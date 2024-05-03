@@ -1,0 +1,163 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"gaudi_add_module",
+			"_merge_files",
+			"_merge_files_confdb",
+			"_merge_files_confdb2"
+		],
+		"files" : 
+		[
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiToolbox.cmake",
+			"k4GaudiPandora/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 456,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 468,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1442,
+				"parent" : 3
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 498,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 503,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 1451,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1442,
+				"parent" : 7
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 504,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1471,
+				"parent" : 9
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 47,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"k4GaudiPandora/libk4GaudiPandoraPlugins.so"
+			],
+			"targetId" : "k4GaudiPandoraPlugins::@e0de9357324d418e2b7e",
+			"targetIndex" : 28,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"build/k4GaudiPandora.components"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "python/k4GaudiPandora",
+			"paths" : 
+			[
+				"build/k4GaudiPandora/genConfDir/k4GaudiPandora/k4GaudiPandoraPluginsConf.py",
+				"build/k4GaudiPandora/genConfDir/k4GaudiPandora/__init__.py"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"build/k4GaudiPandora.confdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 10,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"build/k4GaudiPandora.confdb2"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 11,
+			"component" : "shlib",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"k4GaudiPandora/libk4GaudiPandoraPlugins.so"
+			],
+			"targetId" : "k4GaudiPandoraPlugins::@e0de9357324d418e2b7e",
+			"targetIndex" : 28,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "k4GaudiPandora",
+		"source" : "k4GaudiPandora"
+	}
+}

@@ -1,0 +1,129 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/vdt/0.4.4-bx2smv/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/intel-oneapi-mkl/2024.0.0-6zeves/mkl/2024.0/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/alpaka/0.7.0-icvsr3/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/cupla/0.3.0-3ms73g/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/physsim/0.5-532tkk/include/physsim",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/kaldet/1.14.1-om5hto/include/kaldet",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/kaltest/2.5.2-33yr2d/include/kaltest",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/eigen/3.4.0-4olj7o/include/eigen3",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/lcio/2.21-66idkb",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/libzmq/4.3.5-jjezt6/include",
+						"/usr/lib/gcc/x86_64-redhat-linux/11/include",
+						"/usr/local/include",
+						"/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/usr/lib/gcc/x86_64-redhat-linux/11",
+						"/usr/lib64",
+						"/lib64",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/intel-oneapi-mkl/2024.0.0-6zeves/mkl/2024.0/lib",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/libzmq/4.3.5-jjezt6/lib",
+						"/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"gcc",
+						"gcc_s",
+						"c",
+						"gcc",
+						"gcc_s"
+					]
+				},
+				"path" : "/usr/bin/gcc",
+				"version" : "11.3.1"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/vdt/0.4.4-bx2smv/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/intel-oneapi-mkl/2024.0.0-6zeves/mkl/2024.0/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/alpaka/0.7.0-icvsr3/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/cupla/0.3.0-3ms73g/include",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/physsim/0.5-532tkk/include/physsim",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/kaldet/1.14.1-om5hto/include/kaldet",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/kaltest/2.5.2-33yr2d/include/kaltest",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/eigen/3.4.0-4olj7o/include/eigen3",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/lcio/2.21-66idkb",
+						"/usr/include/c++/11",
+						"/usr/include/c++/11/x86_64-redhat-linux",
+						"/usr/include/c++/11/backward",
+						"/usr/lib/gcc/x86_64-redhat-linux/11/include",
+						"/usr/local/include",
+						"/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/usr/lib/gcc/x86_64-redhat-linux/11",
+						"/usr/lib64",
+						"/lib64",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/intel-oneapi-mkl/2024.0.0-6zeves/mkl/2024.0/lib",
+						"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/libzmq/4.3.5-jjezt6/lib",
+						"/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"m",
+						"gcc_s",
+						"gcc",
+						"c",
+						"gcc_s",
+						"gcc"
+					]
+				},
+				"path" : "/usr/bin/g++",
+				"version" : "11.3.1"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

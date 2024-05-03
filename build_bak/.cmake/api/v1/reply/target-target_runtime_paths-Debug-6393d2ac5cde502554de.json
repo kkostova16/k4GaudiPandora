@@ -1,0 +1,78 @@
+{
+	"backtrace" : 8,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"include",
+			"find_package",
+			"find_dependency"
+		],
+		"files" : 
+		[
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiToolbox.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiConfig.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/cmake/3.27.9-4qfmfr/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/k4fwcore/1.0pre19-zlns7f/lib/cmake/k4FWCore/k4FWCoreConfig.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 4
+			},
+			{
+				"command" : 2,
+				"file" : 4,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 4,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 76,
+				"parent" : 3
+			},
+			{
+				"file" : 1,
+				"parent" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 104,
+				"parent" : 5
+			},
+			{
+				"file" : 0,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1535,
+				"parent" : 7
+			}
+		]
+	},
+	"id" : "target_runtime_paths::@6890427a1f51a3e7e1df",
+	"name" : "target_runtime_paths",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}
