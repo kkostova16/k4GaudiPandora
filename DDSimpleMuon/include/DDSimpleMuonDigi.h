@@ -6,7 +6,8 @@
 #include "edm4hep/SimCalorimeterHitCollection.h"
 #include "edm4hep/CalorimeterHitCollection.h"
 #include "edm4hep/EventHeaderCollection.h"
-#include "edm4hep/MCRecoCaloParticleAssociationCollection.h"
+#include "edm4hep/MCRecoCaloAssociationCollection.h"
+#include "edm4hep/CaloHitContributionCollection.h"
 
 #include "CalorimeterHitType.h"
 #include "k4Interface/IGeoSvc.h"
@@ -20,14 +21,14 @@
 
 struct DDSimpleMuonDigi final
   : k4FWCore::MultiTransformer<
-  std::tuple<edm4hep::CalorimeterHitCollection,edm4hep::MCRecoCaloParticleAssociationCollection>(
+  std::tuple<edm4hep::CalorimeterHitCollection,edm4hep::MCRecoCaloAssociationCollection>(
 											  const edm4hep::SimCalorimeterHitCollection&, const edm4hep::EventHeaderCollection&)> {
   DDSimpleMuonDigi(const std::string& name, ISvcLocator* svcLoc);
 
   StatusCode initialize() override;
   StatusCode finalize() override;
 
-  std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloParticleAssociationCollection> operator()
+  std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationCollection> operator()
   (const edm4hep::SimCalorimeterHitCollection& simCaloHits,
    const edm4hep::EventHeaderCollection& headers) const override;
 
@@ -60,6 +61,10 @@ private:
   std::vector<bool>  m_useLayersBarrelVec{}, m_useLayersEndcapVec{};
   SmartIF<IGeoSvc>         m_geoSvc;
   SmartIF<IUniqueIDGenSvc> m_uidSvc;
+
+  bool useLayer(CHT::Layout caloLayout, unsigned int layer) ;
+  float computeHitTime( const edm4hep:: SimCalorimeterHit &h ) const ;
+
 };
 DECLARE_COMPONENT(DDSimpleMuonDigi)
 #endif
