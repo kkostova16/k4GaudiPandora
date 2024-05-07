@@ -1,0 +1,158 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include",
+			"find_package",
+			"find_dependency"
+		],
+		"files" : 
+		[
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiToolbox.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiConfig.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/cmake/3.27.9-4qfmfr/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/k4fwcore/1.0pre19-zlns7f/lib/cmake/k4FWCore/k4FWCoreConfig.cmake",
+			"CMakeLists.txt",
+			"cmake/CreateProjectConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 4
+			},
+			{
+				"command" : 2,
+				"file" : 4,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 4,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 76,
+				"parent" : 3
+			},
+			{
+				"file" : 1,
+				"parent" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 104,
+				"parent" : 5
+			},
+			{
+				"file" : 0,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1522,
+				"parent" : 7
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 59,
+				"parent" : 0
+			},
+			{
+				"file" : 5,
+				"parent" : 9
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 30,
+				"parent" : 10
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 34,
+				"parent" : 10
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 37,
+				"parent" : 10
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/k4GaudiPandora",
+			"paths" : 
+			[
+				"build/headers_db.csv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 11,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/k4GaudiPandora",
+			"paths" : 
+			[
+				"build/k4GaudiPandoraConfig.cmake",
+				"build/k4GaudiPandoraConfigVersion.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 12,
+			"component" : "Unspecified",
+			"destination" : "include/k4GaudiPandora",
+			"paths" : 
+			[
+				"build/include/k4GaudiPandora/k4GaudiPandoraVersion.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 13,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/k4GaudiPandora",
+			"exportName" : "k4GaudiPandoraTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "k4GaudiPandoraPlugins::@e0de9357324d418e2b7e",
+					"index" : 28
+				},
+				{
+					"id" : "k4GaudiPandoraPluginsSimple::@8c99bbe82c6c4047893e",
+					"index" : 29
+				}
+			],
+			"paths" : 
+			[
+				"CMakeFiles/Export/aeb823f11c2f0e4b5ce7168223e3cc05/k4GaudiPandoraTargets.cmake"
+			],
+			"type" : "export"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

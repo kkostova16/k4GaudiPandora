@@ -1,0 +1,88 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"gaudi_add_module"
+		],
+		"files" : 
+		[
+			"/cvmfs/sw.hsf.org/key4hep/releases/2024-03-10/x86_64-almalinux9-gcc11.3.1-opt/gaudi/38.0-u3otlq/lib/cmake/Gaudi/GaudiToolbox.cmake",
+			"DDSimpleMuon/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 456,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 498,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 35,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"DDSimpleMuon/libk4GaudiPandoraPluginsSimple.so"
+			],
+			"targetId" : "k4GaudiPandoraPluginsSimple::@8c99bbe82c6c4047893e",
+			"targetIndex" : 29,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "python/DDSimpleMuon",
+			"paths" : 
+			[
+				"build/DDSimpleMuon/genConfDir/DDSimpleMuon/k4GaudiPandoraPluginsSimpleConf.py",
+				"build/DDSimpleMuon/genConfDir/DDSimpleMuon/__init__.py"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "shlib",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"DDSimpleMuon/libk4GaudiPandoraPluginsSimple.so"
+			],
+			"targetId" : "k4GaudiPandoraPluginsSimple::@8c99bbe82c6c4047893e",
+			"targetIndex" : 29,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "DDSimpleMuon",
+		"source" : "DDSimpleMuon"
+	}
+}

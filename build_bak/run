@@ -1,0 +1,4 @@
+#!/bin/sh
+# Auto-generated script to set the environment before the execution of a command
+. /home/ksasikum/Key4Hep/k4GaudiPandora/build/k4gaudipandoraenv.sh
+exec "$@"

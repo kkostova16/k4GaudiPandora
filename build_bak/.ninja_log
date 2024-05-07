@@ -1,0 +1,5 @@
+# ninja log v5
+4	2347	1713524862481188067	k4GaudiPandora/CMakeFiles/k4GaudiPandoraPlugins.dir/src/components/HelloWorldAlg.cpp.o	cfb55eaaa7622ab0
+3	4263	1713524864396163179	k4GaudiPandora/CMakeFiles/k4GaudiPandoraPlugins.dir/src/components/ExampleConsumer.cpp.o	7b132882a4fcab00
+3	4261	1713524864394163204	k4GaudiPandora/CMakeFiles/k4GaudiPandoraPlugins.dir/src/components/ExampleTransformer.cpp.o	6e65da1f95585d2d
+2	4370	1713524864503161788	k4GaudiPandora/CMakeFiles/k4GaudiPandoraPlugins.dir/src/components/CreateExampleEventData.cpp.o	e1a91bda1e313221
