@@ -202,7 +202,7 @@ struct DDCaloDigi final
   float siliconDigi(float energy) const;
   float scintillatorDigi(float energy, bool isEcal) const;
   //edm4hep::SimCalorimeterHitCollection combineVirtualStripCells(edm4hep::SimCalorimeterHitCollection const& col, bool isBarrel, int stripOrientation ) const;
-  
+
   int getNumberOfVirtualCells() const;
   std::vector<std::pair <int, int>> getLayerConfig() const;
   void checkConsistency(std::string colName, int layer) const;
@@ -212,11 +212,41 @@ struct DDCaloDigi final
 
   int _nRun = 0;
   int _nEvt = 0;
- 
+  
+  //LCFlagImpl _flag{};
+
+  
+
   std::string _outputRelCollection = "";
+
+  //float _thresholdEcal = 5.0e-5;
+  //std::string _unitThresholdEcal = "GeV";
+  //std::vector<float> _thresholdHcal{};
+  //std::string _unitThresholdHcal = "GeV";
+
+  // int _digitalEcal = 0;
+  // int _mapsEcalCorrection = 0;
+  // int _digitalHcal = 0;
+
+  //bool _ECAL_stripHits;
+
+  // std::vector<float> _calibrCoeffEcal{};
+  // std::vector<float> _calibrCoeffHcalBarrel{};
+  // std::vector<float> _calibrCoeffHcalEndCap{};
+  // std::vector<float> _calibrCoeffHcalOther{};
 
   std::vector<int> _ecalLayers{};
   std::vector<int> _hcalLayers{};
+
+  // int _ecalGapCorrection = 1;
+  // float _ecalGapCorrectionFactor = 1;
+  // float _ecalModuleGapCorrectionFactor = 0.5;
+  // float _ecalEndcapCorrectionFactor = 1.025;
+  // float _hcalEndcapCorrectionFactor = 1.025;
+  // int   _hcalGapCorrection = 1;
+  // float _hcalModuleGapCorrectionFactor = 0.5;
+
+ 
 
   float _zOfEcalEndcap = 0.0;
   float _barrelPixelSizeT[MAX_LAYERS];
@@ -225,9 +255,70 @@ struct DDCaloDigi final
   float _endcapPixelSizeY[MAX_LAYERS];
   float _barrelStaveDir[MAX_STAVES][2];
   
+  //int   _histograms = 0;
+
+  // timing
+  // int   _useEcalTiming = 0;
+  // int   _ecalCorrectTimesForPropagation = 0;
+  //   float _ecalBarrelTimeWindowMax = 100.0;
+  // float _ecalEndcapTimeWindowMax = 100.0;
+  // float _ecalDeltaTimeHitResolution = 10.0;
+  // float _ecalTimeResolution = 10.0;
+  // bool  _ecalSimpleTimingCut = true;
+
+  // int   _useHcalTiming = 1;
+  // int   _hcalCorrectTimesForPropagation = 0;
+  // float _hcalTimeWindowMin = -10.0;
+  // float _hcalBarrelTimeWindowMax = 100.0;
+  // float _hcalEndcapTimeWindowMax = 100.0;
+  // float _hcalDeltaTimeHitResolution = 10.0;
+  // float _hcalTimeResolution = 10.0;
+  // bool  _hcalSimpleTimingCut = true;
   
   std::unique_ptr<DDScintillatorPpdDigi> _scEcalDigi{};
   std::unique_ptr<DDScintillatorPpdDigi> _scHcalDigi{};
+
+
+  // parameters for extra ECAL digitization effects
+  //  float _calibEcalMip = 1.0e-4;       // MIP calibration factor
+  //  int   _applyEcalDigi = 0;           // which realistic calib to apply
+  // float _ecal_PPD_pe_per_mip = 7;     // # photoelectrons/MIP for MPPC
+  // int   _ecal_PPD_n_pixels = 10000;   // # pixels in MPPC
+  // float _ehEnergy = 3.6;              // energy to create e-h pair in silicon
+  // float _ecal_misCalibNpix = 0.05;    // miscalibration of # MPPC pixels
+
+  // float _misCalibEcal_uncorrel = 0.0; // general ECAL miscalibration (uncorrelated between channels)
+  // bool  _misCalibEcal_uncorrel_keep = false;// if true, use the same ECAL cell miscalibs in each event (requires more memory)
+  // float _misCalibEcal_correl = 0.0;     // general ECAL miscalibration (100% uncorrelated between channels)
+
+  // float _deadCellFractionEcal = 0.0;  // fraction of random dead channels
+  // bool  _deadCellEcal_keep = false;   // keep same cells dead between events?
+
+  // float _strip_abs_length = 1000000;  // absorption length along strip for non-uniformity modeling
+  // float _ecal_pixSpread = 0.05;       // relative spread of MPPC pixel signal
+  // float _ecal_elec_noise = 0;         // electronics noise (as fraction of MIP)
+  // float _ecalMaxDynMip = 2500;        // electronics dynamic range (in terms of MIPs)
+  // int _ecalStrip_default_nVirt = 9;   // # virtual cells used in Mokka simulation of strips (if available, this is taken from gear file)
+  // std::string _ecal_deafult_layer_config ="000000000000000";// ECAL layer configuration (if available, this is taken from gear file)
+
+  // parameters for extra AHCAL digitization effects
+  // float _calibHcalMip = 1.0e-4;       // MIP calibration factor
+  // int   _applyHcalDigi = 0;           // which realistic calib to apply
+  // float _hcal_PPD_pe_per_mip = 10;    // # photoelectrons/MIP for MPPC
+  // int   _hcal_PPD_n_pixels= 400;      // # pixels in MPPC
+  // float _hcal_misCalibNpix = 0.05;    // miscalibration of # MPPC pixels
+
+  // float _misCalibHcal_uncorrel = 0.0; // general ECAL miscalibration (uncorrelated between channels)
+  // bool  _misCalibHcal_uncorrel_keep = false; // if true, use the same AHCAL cell miscalibs in each event (requires more memory)
+  // float _misCalibHcal_correl = 0.0;   // general ECAL miscalibration (100% uncorrelated between channels)
+
+  // float _deadCellFractionHcal = 0.0;  // fraction of random dead channels
+  // bool  _deadCellHcal_keep = false;   // keep same cells dead between events?
+  // float _hcal_pixSpread = 0.0;        // relative spread of MPPC pixel signal
+  // float _hcal_elec_noise = 0.0;       // electronics noise (as fraction of MIP)
+  // float _hcalMaxDynMip = 200;         // electronics dynamic range (in terms of MIPs)
+
+
 
   // internal variables
   int _strip_virt_cells = 999;

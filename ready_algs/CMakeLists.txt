@@ -19,7 +19,7 @@ limitations under the License.
 
 
 
-set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDCaloDigi.cc)
+set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDSimpleMuonDigi.cc)
 
 gaudi_add_module(k4GaudiPandoraPluginsSimple
                  SOURCES ${_plugin_sources}
@@ -27,7 +27,7 @@ gaudi_add_module(k4GaudiPandoraPluginsSimple
                       Gaudi::GaudiAlgLib
                       k4FWCore::k4FWCore
                       EDM4HEP::edm4hep
-		                  DD4hep::DDRec
+		      DD4hep::DDRec
                       DD4hep::DDCore
                       )
 target_include_directories(k4GaudiPandoraPluginsSimple PRIVATE include)

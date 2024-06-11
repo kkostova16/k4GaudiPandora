@@ -59,7 +59,7 @@ StatusCode DDSimpleMuonDigi::initialize() {
   try {
     const auto mainDetector = m_geoSvc->getDetector();
     //dd4hep::Detector & mainDetector = dd4hep::Detector::getInstance();
-    dd4hep::DetElement                         theDetector = mainDetector->detector(m_detectorNameEndcap);
+    dd4hep::DetElement                 theDetector = mainDetector->detector(m_detectorNameEndcap);
     const dd4hep::rec::LayeredCalorimeterData* yokeEndcapParameters =
         theDetector.extension<dd4hep::rec::LayeredCalorimeterData>();
     layersEndcap = yokeEndcapParameters->layers.size();
