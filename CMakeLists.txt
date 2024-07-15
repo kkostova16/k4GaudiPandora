@@ -54,6 +54,6 @@ endif()
 include(CTest)
 
 add_subdirectory(k4GaudiPandora)
-add_subdirectory(DDSimpleMuon)
+# add_subdirectory(DDSimpleMuon)
 
 include(cmake/CreateProjectConfig.cmake)

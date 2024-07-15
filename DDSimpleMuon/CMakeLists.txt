@@ -27,7 +27,7 @@ gaudi_add_module(k4GaudiPandoraPluginsSimple
                       Gaudi::GaudiAlgLib
                       k4FWCore::k4FWCore
                       EDM4HEP::edm4hep
-		                  DD4hep::DDRec
+		      DD4hep::DDRec
                       DD4hep::DDCore
                       )
 target_include_directories(k4GaudiPandoraPluginsSimple PRIVATE include)

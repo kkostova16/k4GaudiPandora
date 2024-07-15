@@ -17,24 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ]]
 
-file(GLOB _plugin_sources src/components/*.cpp )
-
-list(APPEND _plugin_sources
-# src/DDBFieldPlugin.cc
-# src/DDCaloDigi.cc
-# src/DDCaloHitCreator.cc
-# src/DDExternalClusteringAlgorithm.cc
-# src/DDGeometryCreator.cc
- src/DDMCParticleCreator.cc
-# src/DDPandoraPFANewProcessor.cc
-# src/DDPfoCreator.cc
-# src/DDScintillatorPpdDigi.cc
-# src/DDSimpleMuonDigi.cc
-# src/DDTrackCreatorBase.cc
-# src/DDTrackCreatorCLIC.cc
-# src/DDTrackCreatorILD.cc
- )
-
+set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDSimpleMuonDigi.cc)
 
 gaudi_add_module(k4GaudiPandoraPlugins
                  SOURCES ${_plugin_sources}
@@ -42,6 +25,8 @@ gaudi_add_module(k4GaudiPandoraPlugins
                       Gaudi::GaudiAlgLib
                       k4FWCore::k4FWCore
                       EDM4HEP::edm4hep
+                      DD4hep::DDRec
+                      DD4hep::DDCore
                       )
 target_include_directories(k4GaudiPandoraPlugins PRIVATE include)
 install(TARGETS k4GaudiPandoraPlugins

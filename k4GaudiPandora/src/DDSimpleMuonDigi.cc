@@ -93,7 +93,8 @@ StatusCode DDSimpleMuonDigi::initialize() {
       }
     }
   }
-}
+  return StatusCode::SUCCESS;
+} 
 std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationCollection> DDSimpleMuonDigi::operator()(
     const edm4hep::SimCalorimeterHitCollection& SimCaloHits, const edm4hep::EventHeaderCollection& headers) const {
   debug() << " process event : " << headers[0].getEventNumber() << " - run  " << headers[0].getRunNumber()
@@ -138,10 +139,9 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
         muonRel.setSim(hit);
       }
     }
-
-    return std::make_tuple(std::move(muoncol), std::move(muonRelcol));
-    // muoncol.parameters().setValue(edm4hep::CellIDEncoding, initString);
   }
+  return std::make_tuple(std::move(muoncol), std::move(muonRelcol));
+  // muoncol.parameters().setValue(edm4hep::CellIDEncoding, initString); 
 }
 
 StatusCode DDSimpleMuonDigi::finalize() { return StatusCode::SUCCESS; }  //fix
