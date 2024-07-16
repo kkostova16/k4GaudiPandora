@@ -53,6 +53,12 @@ StatusCode DDSimpleMuonDigi::initialize() {
     const dd4hep::rec::LayeredCalorimeterData* yokeBarrelParameters =
         theDetector.extension<dd4hep::rec::LayeredCalorimeterData>();
     layersBarrel = yokeBarrelParameters->layers.size();
+    if (yokeBarrelParameters) {
+      info() << "yokeBarrelParameters is not a null" << endmsg;
+    }
+    else {
+      error() << "yokeBarrelParameters is a null pointer" << endmsg;
+    }
   } catch (std::exception& e) {
     debug() << "  oops - no Yoke Barrel available: " << e.what() << std::endl;
   }
