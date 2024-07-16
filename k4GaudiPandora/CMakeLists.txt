@@ -22,8 +22,8 @@ set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDSimpleMuonDigi.cc)
 gaudi_add_module(k4GaudiPandoraPlugins
                  SOURCES ${_plugin_sources}
                  LINK Gaudi::GaudiKernel
-                      
                       k4FWCore::k4FWCore
+                      k4FWCore::k4Interface
                       EDM4HEP::edm4hep
                       DD4hep::DDRec
                       DD4hep::DDCore

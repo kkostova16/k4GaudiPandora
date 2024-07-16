@@ -32,15 +32,22 @@ DECLARE_COMPONENT(DDSimpleMuonDigi)
 DDSimpleMuonDigi::DDSimpleMuonDigi(const std::string& aName, ISvcLocator* aSvcLoc)
     : MultiTransformer(aName, aSvcLoc,
                        {
-                           KeyValues("MUONCollections", {"SimCalorimeterHitCollection"}),
-                           KeyValues("HeaderName", {"EventHeader"}),
+                          KeyValues("MUONCollections", {"ECalBarrelCollection","ECalEndcapCollection",
+                                                        "HCalBarrelCollection","HCalEndcapCollection",
+                                                        "HCalRingCollection","LumiCalCollection",
+                                                        "YokeBarrelCollection","YokeEndcapCollection"}),
+                          KeyValues("HeaderName", {"EventHeader"}),
                        },
-                       {KeyValues("MUONOutputCollections", {"CalorimeterHit"}),
-                        KeyValues("RelationOutputCollection", {"RelationMuonHit"})}) {
+                       {
+                          KeyValues("MUONOutputCollections", {"CalorimeterHit"}),
+                          KeyValues("RelationOutputCollection", {"RelationMuonHit"})
+                        }) {
   m_uidSvc = service<IUniqueIDGenSvc>("UniqueIDGenSvc", true);
   if (!m_uidSvc) {
     error() << "Unable to get UniqueIDGenSvc" << endmsg;
   }
+
+  m_geoSvc = serviceLocator()->service("GeoSvc"); // important to initialize m_geoSvc
 }
 
 StatusCode DDSimpleMuonDigi::initialize() {
@@ -52,13 +59,12 @@ StatusCode DDSimpleMuonDigi::initialize() {
     dd4hep::DetElement                         theDetector = mainDetector->detector(m_detectorNameBarrel);
     const dd4hep::rec::LayeredCalorimeterData* yokeBarrelParameters =
         theDetector.extension<dd4hep::rec::LayeredCalorimeterData>();
+
     layersBarrel = yokeBarrelParameters->layers.size();
-    if (yokeBarrelParameters) {
-      info() << "yokeBarrelParameters is not a null" << endmsg;
+    if (!yokeBarrelParameters) {
+      error() << "oops - yokeBarrelParameters is a null pointer" << endmsg;
     }
-    else {
-      error() << "yokeBarrelParameters is a null pointer" << endmsg;
-    }
+
   } catch (std::exception& e) {
     debug() << "  oops - no Yoke Barrel available: " << e.what() << std::endl;
   }
@@ -113,10 +119,10 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
   std::string initString;
   for (unsigned int i(0); i < m_muonCollections.size(); ++i) {
     std::string colName    = m_muonCollections[i];
-    CHT::Layout caloLayout = layoutFromString(colName);
+    //CHT::Layout caloLayout = layoutFromString(colName);
 
     //auto col   = headers[0].getCollection(m_muonCollections[i].c_str());
-    initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
+    //initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
     dd4hep::DDSegmentation::BitFieldCoder bitFieldCoder(initString);  // check!
     // check if decoder contains "layer"
     std::vector<std::string> fields;
@@ -138,7 +144,7 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
         calHit.setCellID(cellID);
         calHit.setEnergy(hitEnergy);
         calHit.setPosition(hit.getPosition());
-        calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
+        //calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
         calHit.setTime(computeHitTime(hit));
         auto muonRel = muonRelcol.create();
         muonRel.setRec(calHit);
@@ -152,6 +158,7 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
 
 StatusCode DDSimpleMuonDigi::finalize() { return StatusCode::SUCCESS; }  //fix
 
+/*
 bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) {
   switch (caloLayout) {
     case CHT::barrel:
@@ -167,6 +174,7 @@ bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) {
       return true;
   }
 }  //useLayer
+*/
 
 float DDSimpleMuonDigi::computeHitTime(const edm4hep::SimCalorimeterHit& h) const {
   // Sort sim hit MC contribution by time.

@@ -39,7 +39,10 @@ digi = DDSimpleMuonDigi()
 digi.SubDetectorName = "Vertex"
 digi.KeepBarrelLayersVec = [0]
 digi.KeepEndcapLayersVec = [0]
-digi.muon_collections = ["SimCalorimeterHitCollection"]
+digi.muon_collections = ["ECalBarrelCollection","ECalEndcapCollection",
+                         "HCalBarrelCollection","HCalEndcapCollection",
+                         "HCalRingCollection","LumiCalCollection",
+                         "YokeBarrelCollection","YokeEndcapCollection"]
 digi.outputRelCollection = "RelationMuonHit"
 digi.outputMuonCollection = "CalorimeterHit"
 digi.EncodingStringParameterName = "initString"
