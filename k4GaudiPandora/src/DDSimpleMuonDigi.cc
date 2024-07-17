@@ -42,6 +42,7 @@ DDSimpleMuonDigi::DDSimpleMuonDigi(const std::string& aName, ISvcLocator* aSvcLo
                           KeyValues("MUONOutputCollections", {"CalorimeterHit"}),
                           KeyValues("RelationOutputCollection", {"RelationMuonHit"})
                         }) {
+
   m_uidSvc = service<IUniqueIDGenSvc>("UniqueIDGenSvc", true);
   if (!m_uidSvc) {
     error() << "Unable to get UniqueIDGenSvc" << endmsg;
@@ -51,7 +52,7 @@ DDSimpleMuonDigi::DDSimpleMuonDigi(const std::string& aName, ISvcLocator* aSvcLo
 }
 
 StatusCode DDSimpleMuonDigi::initialize() {
-  //Get the number of Layers in the Endcap
+  //Get the number of Layers in the Endcap and Barrel
   int layersEndcap = 0, layersBarrel = 0;
   try {
     const auto mainDetector = m_geoSvc->getDetector();
@@ -119,10 +120,10 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
   std::string initString;
   for (unsigned int i(0); i < m_muonCollections.size(); ++i) {
     std::string colName    = m_muonCollections[i];
-    //CHT::Layout caloLayout = layoutFromString(colName);
+    CHT::Layout caloLayout = layoutFromString(colName);
 
     //auto col   = headers[0].getCollection(m_muonCollections[i].c_str());
-    //initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
+    initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
     dd4hep::DDSegmentation::BitFieldCoder bitFieldCoder(initString);  // check!
     // check if decoder contains "layer"
     std::vector<std::string> fields;
@@ -144,7 +145,7 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
         calHit.setCellID(cellID);
         calHit.setEnergy(hitEnergy);
         calHit.setPosition(hit.getPosition());
-        //calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
+        calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
         calHit.setTime(computeHitTime(hit));
         auto muonRel = muonRelcol.create();
         muonRel.setRec(calHit);
@@ -158,7 +159,7 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
 
 StatusCode DDSimpleMuonDigi::finalize() { return StatusCode::SUCCESS; }  //fix
 
-/*
+
 bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) {
   switch (caloLayout) {
     case CHT::barrel:
@@ -174,7 +175,7 @@ bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) {
       return true;
   }
 }  //useLayer
-*/
+
 
 float DDSimpleMuonDigi::computeHitTime(const edm4hep::SimCalorimeterHit& h) const {
   // Sort sim hit MC contribution by time.

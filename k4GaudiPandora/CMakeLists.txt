@@ -17,7 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ]]
 
-set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDSimpleMuonDigi.cc)
+set(_plugin_sources ${CMAKE_CURRENT_LIST_DIR}/src/DDSimpleMuonDigi.cc
+					src/CalorimeterHitType.cc)
 
 gaudi_add_module(k4GaudiPandoraPlugins
                  SOURCES ${_plugin_sources}
