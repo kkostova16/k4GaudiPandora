@@ -110,9 +110,8 @@ StatusCode DDSimpleMuonDigi::initialize() {
 } 
 std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationCollection> DDSimpleMuonDigi::operator()(
     const edm4hep::SimCalorimeterHitCollection& SimCaloHits, const edm4hep::EventHeaderCollection& headers) const {
-  debug() << " process event : " << headers[0].getEventNumber() << " - run  " << headers[0].getRunNumber()
-
-          << endmsg;  // headers[0].getRunNumber(),headers[0].getEventNumber()
+  debug() << " process event : " << headers[0].getEventNumber() 
+          << " - run  " << headers[0].getRunNumber() << endmsg;  // headers[0].getRunNumber(),headers[0].getEventNumber()
 
   auto muoncol    = edm4hep::CalorimeterHitCollection();
   auto muonRelcol = edm4hep::MCRecoCaloAssociationCollection();
@@ -126,20 +125,22 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
     initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
     dd4hep::DDSegmentation::BitFieldCoder bitFieldCoder(initString);  // check!
     // check if decoder contains "layer"
-    std::vector<std::string> fields;
-    //int                      numElements = col.getNumberOfElements();
+    std::vector<std::string> fields; //??
 
     for (const auto& hit : SimCaloHits) {
       const int    cellID = hit.getCellID();
       float        energy = hit.getEnergy();
-      unsigned int layer  = bitFieldCoder.get(cellID, m_cellIDLayerString);
-      // if (!useLayer(caloLayout, layer))
-      //   continue;
-      float calibr_coeff(1.);
+      //Get the layer number
+      unsigned int layer  = bitFieldCoder.get(cellID,"layer");
+      //Check if we want to use this later, else go to the next hit
+      //if (!useLayer(caloLayout, layer)) continue;
+
+      float calibr_coeff = 1.;
       calibr_coeff    = m_calibrCoeffMuon;
       float hitEnergy = calibr_coeff * energy;
-      if (hitEnergy > m_maxHitEnergyMuon)
+      if (hitEnergy > m_maxHitEnergyMuon) {
         hitEnergy = m_maxHitEnergyMuon;
+      }
       if (hitEnergy > m_thresholdMuon) {
         edm4hep::MutableCalorimeterHit calHit = muoncol.create();
         calHit.setCellID(cellID);

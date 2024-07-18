@@ -36,7 +36,7 @@ geoservice.EnableGeant4Geo = False
 
 digi = DDSimpleMuonDigi()
 
-digi.SubDetectorName = "Vertex"
+digi.SubDetectorName = "VXD"
 digi.KeepBarrelLayersVec = [0]
 digi.KeepEndcapLayersVec = [0]
 digi.muon_collections = ["ECalBarrelCollection","ECalEndcapCollection",
@@ -45,8 +45,8 @@ digi.muon_collections = ["ECalBarrelCollection","ECalEndcapCollection",
                          "YokeBarrelCollection","YokeEndcapCollection"]
 digi.outputRelCollection = "RelationMuonHit"
 digi.outputMuonCollection = "CalorimeterHit"
-digi.EncodingStringParameterName = "initString"
-digi.CellIDLayerString = "Layer"
+digi.EncodingStringParameterName = "GlobalTrackerReadoutID"
+digi.CellIDLayerString = "layer"
 digi.MuonThreshold = 0.025
 digi.timethresholdMuon = 0.025
 digi.calibrationCoeffmuon = 120000.0
@@ -63,7 +63,7 @@ digi.detectornameE = "YokeEndcap"
 
 iosvc = IOSvc()
 iosvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
-iosvc.output = "output_digi.root"
+iosvc.output = "/home/kkostova/Desktop/k4GaudiPandora/k4GaudiPandora/options/files/output_digi.root"
 
 # inp.collections = [
 #     "VertexBarrelCollection",
