@@ -39,10 +39,11 @@ digi = DDSimpleMuonDigi()
 digi.SubDetectorName = "VXD"
 digi.KeepBarrelLayersVec = [0]
 digi.KeepEndcapLayersVec = [0]
-digi.muon_collections = ["ECalBarrelCollection","ECalEndcapCollection",
-                         "HCalBarrelCollection","HCalEndcapCollection",
-                         "HCalRingCollection","LumiCalCollection",
-                         "YokeBarrelCollection","YokeEndcapCollection"]
+digi.muon_collections = ["ECalBarrelCollection"]
+#                          ,"ECalEndcapCollection",
+#                         "HCalBarrelCollection","HCalEndcapCollection",
+#                         "HCalRingCollection","LumiCalCollection",
+#                         "YokeBarrelCollection","YokeEndcapCollection"]
 digi.outputRelCollection = "RelationMuonHit"
 digi.outputMuonCollection = "CalorimeterHit"
 digi.EncodingStringParameterName = "GlobalTrackerReadoutID"
@@ -62,8 +63,8 @@ digi.detectornameE = "YokeEndcap"
 #digi.OutputFileName = "muon_digi_histograms.root"
 
 iosvc = IOSvc()
-iosvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
-iosvc.output = "/home/kkostova/Desktop/k4GaudiPandora/k4GaudiPandora/options/files/output_digi.root"
+iosvc.input = "/home/kkostova/Desktop/k4GaudiPandora/simulation/sim.edm4hep.root"
+iosvc.output = "output_digi.root"
 
 # inp.collections = [
 #     "VertexBarrelCollection",
