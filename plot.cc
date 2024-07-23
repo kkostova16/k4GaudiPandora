@@ -17,6 +17,8 @@ void plot() {
   // Create histograms
   auto hEnergyMarlin = new TH1F("hEnergyMarlin",";CalorimeterHit.energy;N",200,0,2000);
   auto hEnergyGaudi = new TH1F("hEnergyGaudi",";CalorimeterHit.energy;N",200,0,2000);
+  auto hSimEnergyMarlin = new TH1F("hSimEnergyMarlin",";SimCalorimeterHit.energy;N",200,0,2000);
+  auto hSimEnergyGaudi = new TH1F("hSimEnergyGaudi",";SimCalorimeterHit.energy;N",200,0,2000);
   auto hTimeMarlin = new TH1F("hTimeMarlin",";CalorimeterHit.time;N",200,0,2000);
   auto hTimeGaudi = new TH1F("hTimeGaudi",";CalorimeterHit.time;N",200,0,2000);
   auto hEnergyRatioMarlin = new TH1F("hEnergyRatioMarlin",";outputEnergy/inputEnergy;N",1000,0,200000);
@@ -33,9 +35,10 @@ void plot() {
       hEnergyMarlin->Fill(coll[n].getEnergy());
       hTimeMarlin->Fill(coll[n].getTime());
     }
-    auto rel = event.get<edm4hep::MCRecoCaloAssociationCollection>("RelationMuonHit");
+    auto& rel = event.get<edm4hep::MCRecoCaloAssociationCollection>("RelationMuonHit");
     cout << "event " << i << " MCRecoCaloAssociation.size " << rel.size() << endl;
     for (size_t n = 0; n < rel.size(); ++n) {
+      hSimEnergyMarlin->Fill(rel[n].getSim().getEnergy());
       auto ratio = (rel[n].getRec().getEnergy())/(rel[n].getSim().getEnergy());
       hEnergyRatioMarlin->Fill(ratio);
     }
@@ -52,9 +55,10 @@ void plot() {
       hEnergyGaudi->Fill(coll[n].getEnergy());
       hTimeGaudi->Fill(coll[n].getTime());
     }
-    auto rel = event.get<edm4hep::MCRecoCaloAssociationCollection>("RelationMuonHit");
+    auto& rel = event.get<edm4hep::MCRecoCaloAssociationCollection>("RelationMuonHit");
     cout << "event " << i << " MCRecoCaloAssociation.size " << rel.size() << endl;
     for (size_t n = 0; n < rel.size(); ++n) {
+      hSimEnergyGaudi->Fill(rel[n].getSim().getEnergy());
       auto ratio = (rel[n].getRec().getEnergy())/(rel[n].getSim().getEnergy());
       hEnergyRatioGaudi->Fill(ratio);
     }
@@ -76,6 +80,8 @@ void plot() {
   // Write histograms to file
   hEnergyMarlin->Write();
   hEnergyGaudi->Write();
+  hSimEnergyMarlin->Write();
+  hSimEnergyGaudi->Write();
   hTimeMarlin->Write();
   hTimeGaudi->Write();
   hEnergyRatioMarlin->Write();
