@@ -17,8 +17,8 @@ void plot() {
   // Create histograms
   auto hEnergyMarlin = new TH1F("hEnergyMarlin",";CalorimeterHit.energy;N",200,0,2000);
   auto hEnergyGaudi = new TH1F("hEnergyGaudi",";CalorimeterHit.energy;N",200,0,2000);
-  auto hSimEnergyMarlin = new TH1F("hSimEnergyMarlin",";SimCalorimeterHit.energy;N",200,0,2000);
-  auto hSimEnergyGaudi = new TH1F("hSimEnergyGaudi",";SimCalorimeterHit.energy;N",200,0,2000);
+  auto hSimEnergyMarlin = new TH1F("hSimEnergyMarlin",";SimCalorimeterHit.energy;N",200,0,0.03);
+  auto hSimEnergyGaudi = new TH1F("hSimEnergyGaudi",";SimCalorimeterHit.energy;N",200,0,0.03);
   auto hTimeMarlin = new TH1F("hTimeMarlin",";CalorimeterHit.time;N",200,0,2000);
   auto hTimeGaudi = new TH1F("hTimeGaudi",";CalorimeterHit.time;N",200,0,2000);
   auto hEnergyRatioMarlin = new TH1F("hEnergyRatioMarlin",";outputEnergy/inputEnergy;N",1000,0,200000);

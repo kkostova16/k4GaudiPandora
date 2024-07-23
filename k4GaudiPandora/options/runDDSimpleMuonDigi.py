@@ -55,21 +55,9 @@ digi.maxMuonHitEnergy = 2.0
 digi.detectornameB = "YokeBarrel"
 digi.detectornameE = "YokeEndcap"
 
-#digi.ResolutionU = [0.003, 0.003, 0.003, 0.003, 0.003, 0.003]
-#digi.ResolutionV = [0.003, 0.003, 0.003, 0.003, 0.003, 0.003]
-#digi.SimTrackerHitCollectionName = "VertexBarrelCollection"
-#digi.SimTrkHitRelCollection = "VXDTrackerHitRelations"
-#digi.TrackerHitCollectionName = "VXDTrackerHits"
-#digi.OutputFileName = "muon_digi_histograms.root"
-
 iosvc = IOSvc()
-iosvc.input = "/home/kkostova/Desktop/k4GaudiPandora/simulation/sim.edm4hep.root"
+iosvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
 iosvc.output = "output_digi.root"
-
-# inp.collections = [
-#     "VertexBarrelCollection",
-#     "EventHeader",
-# ]
 
 hps = RootHistSvc("HistogramPersistencySvc")
 root_hist_svc = RootHistoSink("RootHistoSink")
@@ -77,7 +65,7 @@ root_hist_svc.FileName = "ddmuondigi_hist.root"
 
 ApplicationMgr(TopAlg=[digi],
                EvtSel="NONE",
-               EvtMax=-1,
+               EvtMax=3,
                ExtSvc=[EventDataSvc("EventDataSvc"), root_hist_svc],
                OutputLevel=INFO,
                )
