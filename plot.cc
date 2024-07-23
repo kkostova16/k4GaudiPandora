@@ -15,7 +15,7 @@ void plot() {
   auto myhistofile = new TFile("myhistos.root","RECREATE");
   
   // Create histograms
-  auto hEnergyMarlin = new TH1F("hEnergyMarlin",";CalorimeterHit.energy;N",200,0,2000);
+  auto hEnergyMarlin = new TH1F("hEnergyMarlin",";CalorimeterHit.energy;N",200,0,0.03);
   auto hEnergyGaudi = new TH1F("hEnergyGaudi",";CalorimeterHit.energy;N",200,0,2000);
   auto hSimEnergyMarlin = new TH1F("hSimEnergyMarlin",";SimCalorimeterHit.energy;N",200,0,0.03);
   auto hSimEnergyGaudi = new TH1F("hSimEnergyGaudi",";SimCalorimeterHit.energy;N",200,0,0.03);
