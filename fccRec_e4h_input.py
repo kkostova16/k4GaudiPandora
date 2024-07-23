@@ -37,7 +37,7 @@ from Configurables import ToolSvc, Lcio2EDM4hepTool, EDM4hep2LcioTool
 
 from Configurables import k4DataSvc, PodioInput
 evtsvc = k4DataSvc('EventDataSvc')
-evtsvc.input = "/home/kkostova/Desktop/k4GaudiPandora/simulation/sim.edm4hep.root"
+evtsvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
 
 inp = PodioInput('InputReader')
 inp.collections = [
@@ -76,10 +76,10 @@ MyDDSimpleMuonDigi.Parameters = {
                                  "MUONCollections": ["ECalBarrelCollection"],
                                  "MUONOutputCollection": ["CalorimeterHit"],
                                  "RelationOutputCollection": ["RelationMuonHit"],
-                                 "MuonThreshold": ["0.025"],
-                                 "MuonTimeThreshold": ["0.025"],
-                                 "CalibrMUON": ["120000.0"],
-                                 "MaxHitEnergyMUON": ["2.0"],                              
+                                 "MuonThreshold": ["0."],
+                                 "MuonTimeThreshold": ["0."],
+                                 "CalibrMUON": ["1.0"],
+                                 "MaxHitEnergyMUON": ["2000000000.0"],                              
                                  }
 
 
