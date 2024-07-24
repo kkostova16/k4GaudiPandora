@@ -76,10 +76,10 @@ MyDDSimpleMuonDigi.Parameters = {
                                  "MUONCollections": ["ECalBarrelCollection"],
                                  "MUONOutputCollection": ["CalorimeterHit"],
                                  "RelationOutputCollection": ["RelationMuonHit"],
-                                 "MuonThreshold": ["0."],
-                                 "MuonTimeThreshold": ["0."],
-                                 "CalibrMUON": ["1.0"],
-                                 "MaxHitEnergyMUON": ["2000000000.0"],                              
+                                 "MuonThreshold": ["0.025"],
+                                 "MuonTimeThreshold": ["0.025"],
+                                 "CalibrMUON": ["120000.0"],
+                                 "MaxHitEnergyMUON": ["2.0"],                              
                                  }
 
 
