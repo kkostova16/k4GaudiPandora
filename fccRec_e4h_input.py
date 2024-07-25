@@ -152,7 +152,7 @@ Output_DST.Parameters = {
 
 # Write output to EDM4hep
 from Configurables import PodioOutput
-out = PodioOutput("PodioOutput", filename = "old_output_digi.root")
+out = PodioOutput("PodioOutput", filename = "output_Marlin.root")
 out.outputCommands = ["keep *"]
 
 

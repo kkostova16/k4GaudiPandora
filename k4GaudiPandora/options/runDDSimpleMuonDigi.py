@@ -57,7 +57,7 @@ digi.detectornameE = "YokeEndcap"
 
 iosvc = IOSvc()
 iosvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
-iosvc.output = "output_digi.root"
+iosvc.output = "output_Gaudi.root"
 
 hps = RootHistSvc("HistogramPersistencySvc")
 root_hist_svc = RootHistoSink("RootHistoSink")
@@ -65,7 +65,7 @@ root_hist_svc.FileName = "ddmuondigi_hist.root"
 
 ApplicationMgr(TopAlg=[digi],
                EvtSel="NONE",
-               EvtMax=3,
+               EvtMax=-1,
                ExtSvc=[EventDataSvc("EventDataSvc"), root_hist_svc],
                OutputLevel=INFO,
                )

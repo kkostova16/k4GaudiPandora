@@ -62,7 +62,7 @@ private:
   SmartIF<IGeoSvc>         m_geoSvc;
   SmartIF<IUniqueIDGenSvc> m_uidSvc;
 
-  bool useLayer(CHT::Layout caloLayout, unsigned int layer) ;
+  bool useLayer(CHT::Layout caloLayout, unsigned int layer) const ;
   float computeHitTime( const edm4hep:: SimCalorimeterHit &h ) const ;
 
 };
