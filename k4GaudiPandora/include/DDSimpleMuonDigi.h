@@ -26,7 +26,7 @@ struct DDSimpleMuonDigi final
   DDSimpleMuonDigi(const std::string& name, ISvcLocator* svcLoc);
 
   StatusCode initialize() override;
-  StatusCode finalize() override;
+  //StatusCode finalize() override;
 
   std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationCollection> operator()
   (const edm4hep::SimCalorimeterHitCollection& simCaloHits,
@@ -40,7 +40,7 @@ private:
     this, "KeepEndcapLayersVec", {0}, "Vector of Endcap layers to be kept. Layers start at 1!"};
   //Gaudi::Property<std::vector<bool>> useLayersBarrelVec{this, "useBarrelLayerVector", false, "whether to use the endcap layer vector"};
   //Gaudi::Property<std::vector<bool>> useLayersEndcapVec{this, "useEndCapLayerVector", false, "whether to use the EndCap layer vector"};
-  Gaudi::Property<std::vector<std::string>> m_muonCollections{this, "muon_collections", {"muon_collections"}, "Collection of Muons"};
+  Gaudi::Property<std::string> m_muonCollections{this, "muonCollections", "muonCollections", "The input collection of Muons"};
   Gaudi::Property<std::string> outputRelCollection{this, "outputRelCollection", "outputRelCollection",
     "The output collection of relations"};
   Gaudi::Property<std::string> outputMuonCollection{this, "outputMuonCollection","outputMuonCollection",

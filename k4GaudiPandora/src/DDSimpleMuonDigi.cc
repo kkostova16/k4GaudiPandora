@@ -32,10 +32,7 @@ DECLARE_COMPONENT(DDSimpleMuonDigi)
 DDSimpleMuonDigi::DDSimpleMuonDigi(const std::string& aName, ISvcLocator* aSvcLoc)
     : MultiTransformer(aName, aSvcLoc,
                        {
-                          KeyValues("MUONCollections", {"ECalBarrelCollection","ECalEndcapCollection",
-                                                        "HCalBarrelCollection","HCalEndcapCollection",
-                                                        "HCalRingCollection","LumiCalCollection",
-                                                        "YokeBarrelCollection","YokeEndcapCollection"}),
+                          KeyValues("MUONCollection", {"ECalBarrelCollection"}),
                           KeyValues("HeaderName", {"EventHeader"}),
                        },
                        {
@@ -83,13 +80,15 @@ StatusCode DDSimpleMuonDigi::initialize() {
   //If the vectors are empty, we are keeping everything
   if (m_layersToKeepBarrelVec.size() > 0) {
     //layers start at 0
+    std::vector<int> layersBarrelVec;
+    layersBarrelVec = std::vector<int>(layersBarrel, 0);
     if (m_layersToKeepBarrelVec[0] == 0) {
-      for (int i  = 0; i < layersBarrel; ++i) {
+      for (auto i : layersBarrelVec) {
         m_useLayersBarrelVec.push_back(true);
       }
     }
     else {
-      for (int i  = 0; i < layersBarrel; ++i) {
+      for (auto i : layersBarrelVec) {
         m_useLayersBarrelVec.push_back(false);
       }
       for (int k : m_layersToKeepBarrelVec) {
@@ -97,19 +96,19 @@ StatusCode DDSimpleMuonDigi::initialize() {
       }
     }
     // for the check
-    for (auto elem : m_useLayersBarrelVec) {
-      std::cout << "m_useLayersBarrelVec " << elem << std::endl;
-    }
+    //for (auto elem : m_useLayersBarrelVec) { std::cout << "m_useLayersBarrelVec " << elem << std::endl; }
   }
   if (m_layersToKeepEndCapVec.size() > 0) {
     //layers start at 0
+    std::vector<int> layersEndcapVec;
+    layersEndcapVec = std::vector<int>(layersEndcap, 0);
     if (m_layersToKeepEndCapVec[0] == 0) {
-      for (int i = 0; i < layersEndcap; ++i) {
+      for (auto i : layersEndcapVec) {
         m_useLayersEndcapVec.push_back(true);
       }    
     }
     else {
-      for (int i = 0; i < layersEndcap; ++i) {
+      for (auto i : layersEndcapVec) {
         m_useLayersEndcapVec.push_back(false);
       }
       for (int k : m_layersToKeepEndCapVec) {
@@ -117,9 +116,7 @@ StatusCode DDSimpleMuonDigi::initialize() {
       }
     }
     // just for check
-    for (auto elem : m_useLayersEndcapVec) {
-      std::cout << "m_useLayersEndCapVec " << elem << std::endl;
-    }
+    //for (auto elem : m_useLayersEndcapVec) { std::cout << "m_useLayersEndCapVec " << elem << std::endl; }
   }
   return StatusCode::SUCCESS;
 } 
@@ -132,8 +129,8 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
   auto muonRelcol = edm4hep::MCRecoCaloAssociationCollection();
 
   std::string initString;
-  for (unsigned int i(0); i < m_muonCollections.size(); ++i) {
-    std::string colName    = m_muonCollections[i];
+  //for (unsigned int i(0); i < m_muonCollection.size(); ++i) {
+    std::string colName    = m_muonCollections;
     CHT::Layout caloLayout = layoutFromString(colName);
 
     //auto col   = headers[0].getCollection(m_muonCollections[i].c_str());
@@ -167,14 +164,12 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
         muonRel.setSim(hit);
       }
     }
-  }
+  //}
   return std::make_tuple(std::move(muoncol), std::move(muonRelcol));
   // muoncol.parameters().setValue(edm4hep::CellIDEncoding, initString); 
 }
 
-StatusCode DDSimpleMuonDigi::finalize() { 
-  return StatusCode::SUCCESS; 
-}  //fix
+//StatusCode DDSimpleMuonDigi::finalize() { return StatusCode::SUCCESS; }
 
 bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) const {
   switch (caloLayout) {

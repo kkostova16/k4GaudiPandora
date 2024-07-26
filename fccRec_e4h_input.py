@@ -37,7 +37,7 @@ from Configurables import ToolSvc, Lcio2EDM4hepTool, EDM4hep2LcioTool
 
 from Configurables import k4DataSvc, PodioInput
 evtsvc = k4DataSvc('EventDataSvc')
-evtsvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
+evtsvc.input = "/home/kkostova/Desktop/simulation/sim25.edm4hep.root"
 
 inp = PodioInput('InputReader')
 inp.collections = [
@@ -152,7 +152,7 @@ Output_DST.Parameters = {
 
 # Write output to EDM4hep
 from Configurables import PodioOutput
-out = PodioOutput("PodioOutput", filename = "output_Marlin.root")
+out = PodioOutput("PodioOutput", filename = "~/Desktop/outputfiles/output_Marlin.root")
 out.outputCommands = ["keep *"]
 
 
@@ -166,7 +166,7 @@ algList.append(out)
 from Configurables import ApplicationMgr
 ApplicationMgr( TopAlg = algList,
                 EvtSel = 'NONE',
-                EvtMax   = 3,
+                EvtMax   = -1,
                 ExtSvc = [evtsvc],
                 OutputLevel=WARNING
               )

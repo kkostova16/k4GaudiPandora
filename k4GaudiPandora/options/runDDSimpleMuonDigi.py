@@ -39,11 +39,7 @@ digi = DDSimpleMuonDigi()
 digi.SubDetectorName = "VXD"
 digi.KeepBarrelLayersVec = [0]
 digi.KeepEndcapLayersVec = [0]
-digi.muon_collections = ["ECalBarrelCollection"]
-#                          ,"ECalEndcapCollection",
-#                         "HCalBarrelCollection","HCalEndcapCollection",
-#                         "HCalRingCollection","LumiCalCollection",
-#                         "YokeBarrelCollection","YokeEndcapCollection"]
+digi.muonCollections = "ECalBarrelCollection"    # "ECalBarrelCollection","ECalEndcapCollection","HCalBarrelCollection","HCalEndcapCollection","HCalRingCollection","LumiCalCollection","YokeBarrelCollection","YokeEndcapCollection"
 digi.outputRelCollection = "RelationMuonHit"
 digi.outputMuonCollection = "CalorimeterHit"
 digi.EncodingStringParameterName = "GlobalTrackerReadoutID"
@@ -56,12 +52,12 @@ digi.detectornameB = "YokeBarrel"
 digi.detectornameE = "YokeEndcap"
 
 iosvc = IOSvc()
-iosvc.input = "/home/kkostova/Desktop/simulation/sim.edm4hep.root"
-iosvc.output = "output_Gaudi.root"
+iosvc.input = "~/Desktop/simulation/sim25.edm4hep.root"
+iosvc.output = "~/Desktop/outputfiles/output_Gaudi.root"
 
 hps = RootHistSvc("HistogramPersistencySvc")
 root_hist_svc = RootHistoSink("RootHistoSink")
-root_hist_svc.FileName = "ddmuondigi_hist.root"
+root_hist_svc.FileName = "~/Desktop/outputfiles/ddmuondigi_hist.root"
 
 ApplicationMgr(TopAlg=[digi],
                EvtSel="NONE",
