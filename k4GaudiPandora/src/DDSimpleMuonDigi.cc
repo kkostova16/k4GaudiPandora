@@ -82,13 +82,8 @@ StatusCode DDSimpleMuonDigi::initialize() {
     //layers start at 0
     std::vector<int> layersBarrelVec;
     layersBarrelVec = std::vector<int>(layersBarrel, 0);
-    if (m_layersToKeepBarrelVec[0] == 0) {
-      for (auto i : layersBarrelVec) {
-        m_useLayersBarrelVec.push_back(true);
-      }
-    }
-    else {
-      for (auto i : layersBarrelVec) {
+    if (m_layersToKeepBarrelVec[0] != 0) {
+        for (auto i : layersBarrelVec) {
         m_useLayersBarrelVec.push_back(false);
       }
       for (int k : m_layersToKeepBarrelVec) {
@@ -102,13 +97,8 @@ StatusCode DDSimpleMuonDigi::initialize() {
     //layers start at 0
     std::vector<int> layersEndcapVec;
     layersEndcapVec = std::vector<int>(layersEndcap, 0);
-    if (m_layersToKeepEndCapVec[0] == 0) {
-      for (auto i : layersEndcapVec) {
-        m_useLayersEndcapVec.push_back(true);
-      }    
-    }
-    else {
-      for (auto i : layersEndcapVec) {
+    if (m_layersToKeepEndCapVec[0] != 0) {
+        for (auto i : layersEndcapVec) {
         m_useLayersEndcapVec.push_back(false);
       }
       for (int k : m_layersToKeepEndCapVec) {
@@ -129,48 +119,49 @@ std::tuple<edm4hep::CalorimeterHitCollection, edm4hep::MCRecoCaloAssociationColl
   auto muonRelcol = edm4hep::MCRecoCaloAssociationCollection();
 
   std::string initString;
-  //for (unsigned int i(0); i < m_muonCollection.size(); ++i) {
-    std::string colName    = m_muonCollections;
-    CHT::Layout caloLayout = layoutFromString(colName);
-
-    //auto col   = headers[0].getCollection(m_muonCollections[i].c_str());
-    initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
-    dd4hep::DDSegmentation::BitFieldCoder bitFieldCoder(initString);  // check!
-    // check if decoder contains "layer"
   
-    for (const auto& hit : SimCaloHits) {
-      const int    cellID = hit.getCellID();
-      float        energy = hit.getEnergy();
-      //Get the layer number
-      unsigned int layer  = bitFieldCoder.get(cellID,"layer");
-      //Check if we want to use this later, else go to the next hit
-      if (!useLayer(caloLayout, layer)) continue;
+  std::string colName    = m_muonCollections;
+  CHT::Layout caloLayout = layoutFromString(colName);
 
-      float calibr_coeff = 1.;
-      calibr_coeff    = m_calibrCoeffMuon;
-      float hitEnergy = calibr_coeff * energy;
-      if (hitEnergy > m_maxHitEnergyMuon) {
-        hitEnergy = m_maxHitEnergyMuon;
-      }
-      if (hitEnergy > m_thresholdMuon) {
-        edm4hep::MutableCalorimeterHit calHit = muoncol.create();
-        calHit.setCellID(cellID);
-        calHit.setEnergy(hitEnergy);
-        calHit.setPosition(hit.getPosition());
-        calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
-        calHit.setTime(computeHitTime(hit));
-        auto muonRel = muonRelcol.create();
-        muonRel.setRec(calHit);
-        muonRel.setSim(hit);
-      }
+  //auto col   = headers[0].getCollection(m_muonCollections[i].c_str());
+  initString = m_geoSvc->constantAsString(m_encodingStringVariable.value());
+  dd4hep::DDSegmentation::BitFieldCoder bitFieldCoder(initString);  // check!
+  // check if decoder contains "layer"
+
+  for (const auto& hit : SimCaloHits) {
+    const int    cellID = hit.getCellID();
+    float        energy = hit.getEnergy();
+    //Get the layer number
+    unsigned int layer  = bitFieldCoder.get(cellID,"layer");
+    //Check if we want to use this later, else go to the next hit
+    if (!useLayer(caloLayout, layer)) continue;
+    //Do the digitalization
+    float calibr_coeff = 1.;
+    calibr_coeff    = m_calibrCoeffMuon;
+    float hitEnergy = calibr_coeff * energy;
+    if (hitEnergy > m_maxHitEnergyMuon) {
+      hitEnergy = m_maxHitEnergyMuon;
     }
-  //}
+    if (hitEnergy > m_thresholdMuon) {
+      edm4hep::MutableCalorimeterHit calHit = muoncol.create();
+      calHit.setCellID(cellID);
+      calHit.setEnergy(hitEnergy);
+      calHit.setPosition(hit.getPosition());
+      calHit.setType(CHT(CHT::muon, CHT::yoke, caloLayout, layer));
+      calHit.setTime(computeHitTime(hit));
+      auto muonRel = muonRelcol.create();
+      muonRel.setRec(calHit);
+      muonRel.setSim(hit);
+    }
+  }
+  
   return std::make_tuple(std::move(muoncol), std::move(muonRelcol));
   // muoncol.parameters().setValue(edm4hep::CellIDEncoding, initString); 
 }
 
 //StatusCode DDSimpleMuonDigi::finalize() { return StatusCode::SUCCESS; }
 
+//If the vectors are empty, we are keeping everything
 bool DDSimpleMuonDigi::useLayer(CHT::Layout caloLayout, unsigned int layer) const {
   switch (caloLayout) {
     case CHT::barrel:

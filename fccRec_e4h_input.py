@@ -37,7 +37,7 @@ from Configurables import ToolSvc, Lcio2EDM4hepTool, EDM4hep2LcioTool
 
 from Configurables import k4DataSvc, PodioInput
 evtsvc = k4DataSvc('EventDataSvc')
-evtsvc.input = "/home/kkostova/Desktop/simulation/sim25.edm4hep.root"
+evtsvc.input = "../simulation/sim_edm4hep.root"
 
 inp = PodioInput('InputReader')
 inp.collections = [
@@ -124,7 +124,7 @@ Output_REC.Parameters = {
                          "DropCollectionTypes": [],
                          "FullSubsetCollections": ["EfficientMCParticles", "InefficientMCParticles"],
                          "KeepCollectionNames": [],
-                         "LCIOOutputFile": ["Output_REC.slcio"],
+                         "LCIOOutputFile": ["../outputfiles/Output_REC.slcio"],
                          "LCIOWriteMode": ["WRITE_NEW"]
                          }
 
@@ -141,10 +141,10 @@ Output_DST.OutputLevel = WARNING
 Output_DST.ProcessorType = "LCIOOutputProcessor"
 Output_DST.Parameters = {
                          "DropCollectionNames": [],
-                         "DropCollectionTypes": ["MCParticle", "LCRelation", "SimCalorimeterHit", "CalorimeterHit", "SimTrackerHit", "TrackerHit", "TrackerHitPlane", "Track", "ReconstructedParticle", "LCFloatVec"],
+                         "DropCollectionTypes": [],
                          "FullSubsetCollections": ["EfficientMCParticles", "InefficientMCParticles", "MCPhysicsParticles"],
                          "KeepCollectionNames": ["MCParticlesSkimmed", "MCPhysicsParticles", "RecoMCTruthLink", "SiTracks", "SiTracks_Refitted", "PandoraClusters", "PandoraPFOs", "SelectedPandoraPFOs", "LooseSelectedPandoraPFOs", "TightSelectedPandoraPFOs", "RefinedVertexJets", "RefinedVertexJets_rel", "RefinedVertexJets_vtx", "RefinedVertexJets_vtx_RP", "BuildUpVertices", "BuildUpVertices_res", "BuildUpVertices_RP", "BuildUpVertices_res_RP", "BuildUpVertices_V0", "BuildUpVertices_V0_res", "BuildUpVertices_V0_RP", "BuildUpVertices_V0_res_RP", "PrimaryVertices", "PrimaryVertices_res", "PrimaryVertices_RP", "PrimaryVertices_res_RP", "RefinedVertices", "RefinedVertices_RP"],
-                         "LCIOOutputFile": ["Output_DST.slcio"],
+                         "LCIOOutputFile": ["../outputfiles/Output_DST.slcio"],
                          "LCIOWriteMode": ["WRITE_NEW"]
                          }
 
@@ -152,7 +152,7 @@ Output_DST.Parameters = {
 
 # Write output to EDM4hep
 from Configurables import PodioOutput
-out = PodioOutput("PodioOutput", filename = "~/Desktop/outputfiles/output_Marlin.root")
+out = PodioOutput("PodioOutput", filename = "../outputfiles/output_Marlin.root")
 out.outputCommands = ["keep *"]
 
 
